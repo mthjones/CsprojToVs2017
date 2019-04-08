@@ -15,6 +15,7 @@ namespace Project2015To2017.Migrate2017.Transforms
 		private static readonly IReadOnlyCollection<string> ItemsToProjectChecked = new[]
 		{
 			"None",
+			"Analyzer",
 			"Content",
 			"AdditionalFiles",
 			"CodeAnalysisDictionary",
@@ -35,7 +36,9 @@ namespace Project2015To2017.Migrate2017.Transforms
 			"ProjectReference",
 			"PackageReference",
 			"Antlr4",
-			"Antlr3"
+			"Antlr3",
+			"View",
+			"AutoGenerate",
 		};
 
 		private readonly ILogger logger;
@@ -94,6 +97,8 @@ namespace Project2015To2017.Migrate2017.Transforms
 				var nonReferencedWildcardMatchingItems = definition.FindAllWildcardFiles(definition.CodeFileExtension)
 					.Select(x => definition.ProjectFolder.GetRelativePathTo(x))
 					.Except(referencedItems, Extensions.PathEqualityComparer)
+					// Preventing a <Compile Remove="..." /> being added for generator outputs
+					.Where( x => !x.StartsWith( ".generated" ) )
 					.ToImmutableArray();
 
 				foreach (var includeMatchingWildcard in nonReferencedWildcardMatchingItems)

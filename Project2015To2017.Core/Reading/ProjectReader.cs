@@ -280,6 +280,8 @@ namespace Project2015To2017.Reading
 
 				var embedInteropTypes = GetElementValue(referenceElement, "EmbedInteropTypes");
 
+				var aliases = GetElementValue(referenceElement, "Aliases");
+
 				var output = new AssemblyReference
 				{
 					Include = include,
@@ -288,6 +290,7 @@ namespace Project2015To2017.Reading
 					Private = isPrivate,
 					SpecificVersion = specificVersion,
 					DefinitionElement = referenceElement,
+					Aliases = aliases,
 				};
 
 				return output;

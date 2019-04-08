@@ -13,6 +13,7 @@ namespace Project2015To2017.Definition
 		public string HintPath { get; set; }
 		public string Private { get; set; }
 		public string SpecificVersion { get; set; }
+		public string Aliases { get; set; }
 
 		public XElement DefinitionElement { get; set; }
 	}

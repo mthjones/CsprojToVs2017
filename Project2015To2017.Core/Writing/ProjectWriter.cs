@@ -331,6 +331,11 @@ namespace Project2015To2017.Writing
 				output.Add(new XElement("EmbedInteropTypes", assemblyReference.EmbedInteropTypes));
 			}
 
+			if (assemblyReference.Aliases != null)
+			{
+				output.Add(new XElement("Aliases", assemblyReference.Aliases));
+			}
+
 			return output;
 		}
 
