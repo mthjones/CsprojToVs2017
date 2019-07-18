@@ -27,6 +27,7 @@ namespace Project2015To2017.Migrate2017
 				new TargetFrameworkReplaceTransformation(
 					conversionOptions.TargetFrameworks,
 					conversionOptions.AppendTargetFrameworkToOutputPath),
+				new AddModifiedDefaultPropertiesTransformation(),
 				new PropertyDeduplicationTransformation(),
 				new PropertySimplificationTransformation(),
 				new PrimaryProjectPropertiesUpdateTransformation(),

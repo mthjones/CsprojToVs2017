@@ -76,6 +76,7 @@ namespace Project2015To2017.Reading
 			projectDefinition.PackagesConfigFile = FindPackagesConfigFile(projectFile);
 			projectDefinition.PackageReferences = LoadPackageReferences(projectDefinition);
 			projectDefinition.ItemGroups = LoadFileIncludes(projectDefinition);
+			projectDefinition.Sdks = LoadSdks(projectDefinition);
 
 			ProcessProjectReferences(projectDefinition);
 
@@ -311,6 +312,16 @@ namespace Project2015To2017.Reading
 							?.Elements(project.XmlNamespace + "ItemGroup")
 							.ToList()
 						?? new List<XElement>();
+
+			return items;
+		}
+
+		private static List<XElement> LoadSdks(Project project)
+		{
+			var items = project.ProjectDocument
+				?.Element(project.XmlNamespace + "Project")
+				?.Elements(project.XmlNamespace + "Sdk")
+				.ToList() ?? new List<XElement>();
 
 			return items;
 		}

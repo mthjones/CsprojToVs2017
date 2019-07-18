@@ -189,6 +189,11 @@ namespace Project2015To2017.Writing
 		{
 			var projectNode = new XElement("Project", new XAttribute("Sdk", project.ProjectSdk));
 
+			if (project.Sdks != null)
+			{
+				projectNode.Add(project.Sdks.Select(RemoveAllNamespaces));
+			}
+
 			if (project.PropertyGroups != null)
 			{
 				projectNode.Add(project.PropertyGroups.Select(RemoveAllNamespaces));
@@ -249,8 +254,12 @@ namespace Project2015To2017.Writing
 				var nugetReferences = new XElement("ItemGroup");
 				foreach (var packageReference in project.PackageReferences)
 				{
-					var reference = new XElement("PackageReference", new XAttribute("Include", packageReference.Id),
-						new XAttribute("Version", packageReference.Version));
+					var reference = new XElement("PackageReference", new XAttribute("Include", packageReference.Id));
+					if (packageReference.Version != null)
+					{
+						reference.SetAttributeValue("Version", packageReference.Version);
+					}
+
 					if (packageReference.IsDevelopmentDependency)
 					{
 						reference.Add(new XElement("PrivateAssets", "all"));

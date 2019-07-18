@@ -25,6 +25,7 @@ namespace Project2015To2017.Definition
 		public IReadOnlyList<string> Configurations { get; set; }
 		public IReadOnlyList<string> Platforms { get; set; }
 		public IList<XElement> ItemGroups { get; set; }
+		public IList<XElement> Sdks { get; set; }
 
 		public XDocument ProjectDocument { get; set; }
 		public string ProjectName { get; set; }

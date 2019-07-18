@@ -107,6 +107,8 @@ namespace Project2015To2017.Transforms
 
 				switch (tagLocalName)
 				{
+					// Legacy Visual Studio version
+					case "ProductVersion":
 					// VS2013 NuGet bugs workaround
 					case "NuGetPackageImportStamp":
 					// legacy generic properties
@@ -267,7 +269,7 @@ namespace Project2015To2017.Transforms
 						       IgnoreProjectNameValues.Contains(child.Value)
 					       );
 				}
-				
+
 				bool IncludeMatchesSpecificGuid()
 				{
 					// This is not required as of VS15.7 and above, but we expect VS15.0
