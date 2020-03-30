@@ -39,6 +39,7 @@ namespace Project2015To2017.Migrate2017.Transforms
 			"Antlr3",
 			"View",
 			"AutoGenerate",
+			"D2lmlVirtualPathMapping"
 		};
 
 		private readonly ILogger logger;
